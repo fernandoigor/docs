@@ -59,3 +59,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 ```
 
+
+
+
+
+### Cast
+```node
+const users = (await fetch(...)) as User[];
+```
+
+
+
+
