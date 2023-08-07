@@ -69,5 +69,12 @@ const users = (await fetch(...)) as User[];
 ```
 
 
+### Generics
+```node
+function identity<T>(arg: T): T {
+  return arg; // arg: type T
+}
+```
+
 
 
