@@ -23,12 +23,27 @@ interface User extends PersonInterface {
   // first_name: string; // PersonInterface
   // last_name: string; // PersonInterface
 }
+
+
+```
+### Keyof
+```node
+type UserProperties = keyof User
 ```
 
+### Criar tipos através de objetos
+```node
+const video = {
+  title: 'nome do video',
+  duration: 120
+}
+
+type Video = keyof video;
+```
 
 ### Omit
 ```node
-const newUser: Omit<User, "id"> = {
+const newUser: Omit<User, "id" | "..."> = {
   name: "John",
   email: "john@doe.com",
   password: "123456",
@@ -41,6 +56,20 @@ const newUser: Pick<User, "name" | "email"> = {
   email: "john@doe.com",
 }
 ```
+### Partial
+```node
+type UserPartial = Partial<User>
+
+/*
+{
+  id?: string | undefined;
+  name?: string | undefined;
+  email?: string | undefined;
+  password?: string | undefined;
+}
+*/
+```
+
 
 
 
@@ -63,9 +92,14 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 
 
-### Cast
+### Cast (without checking type)
 ```node
 const users = (await fetch(...)) as User[];
+```
+### Others
+```node
+const users: User[] = (await fetch(...));
+const users = (await fetch(...)) satisfies User[];
 ```
 
 
@@ -75,6 +109,15 @@ function identity<T>(arg: T): T {
   return arg; // arg: type T
 }
 ```
+
+### Record
+```node
+function identity<T extends Record<string, unknown>>(arg: T): T {
+  return arg; // arg: type T
+}
+// T tem que ser um objeto que o nome das propriedades são string e o valor delas qualquer coisa
+```
+
 
 
 
